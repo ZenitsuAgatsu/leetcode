@@ -1,12 +1,15 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        if(n<=2):
-            return n
+        dp={}
+        def solve(n):
+            if n==0 or n==1:
+                return 1
 
-        a,b=1,2
+            if n in dp:
+                return dp[n]
+            dp[n]=solve(n-1)+solve(n-2)
 
-        for _ in range(3,n+1) :
-            a,b=b,a+b
+            return dp[n]
+        return solve(n)             
 
-        return b 
-
+        
